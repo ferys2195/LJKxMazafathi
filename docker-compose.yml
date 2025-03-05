@@ -1,0 +1,85 @@
+version: "3.8"
+
+services:
+  # Laravel Backend (PHP-FPM)
+  backend:
+    build: ./apps/backend
+    container_name: backapp
+    volumes:
+      - ./apps/backend:/var/www/backend
+    environment:
+      - APP_ENV=production
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=mafhilink
+      - DB_USERNAME=user
+      - DB_PASSWORD=pass
+    depends_on:
+      - db
+    networks:
+      - mafhinet
+
+  # Database
+  db:
+    image: mysql:latest
+    ports:
+      - "3310:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rahasia
+      MYSQL_DATABASE: mafhilink
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - mafhinet
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      MYSQL_ROOT_PASSWORD: rahasia
+    restart: always
+    ports:
+      - "8081:80"
+    networks:
+      - mafhinet
+
+  # Frontend (React.js Dashboard)
+  frontend:
+    build: ./apps/frontend
+    container_name: frontapp
+    volumes:
+      - ./apps/frontend:/var/www/frontend
+    networks:
+      - mafhinet
+    depends_on:
+      - backend
+
+  # Nginx (Reverse Proxy)
+  nginx:
+    image: nginx:latest
+    # container_name: nginx_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/backend.conf:/etc/nginx/conf.d/backend.conf
+      - ./nginx/frontend.conf:/etc/nginx/conf.d/frontend.conf
+      - ./apps/backend:/var/www/backend
+      - ./apps/frontend:/var/www/frontend
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - mafhinet
+
+networks:
+  mafhinet:
+
+volumes:
+  dbdata:
