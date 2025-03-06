@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\TransactionType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
             $table->foreignId('voucher_type_id')->constrained('voucher_types')->onDelete('cascade');
-            $table->enum('transaction_type', ['in', 'out', 'sold']);
+            $table->enum('transaction_type', TransactionType::values());
             $table->integer('quantity');
             $table->integer('price_at_transaction')->nullable();
             $table->integer('management_fee_at_transaction')->nullable();

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->string('name'); // Nama akun (Vendor, Agen, Manajemen, atau Kas)
-            $table->enum('role', ['vendor', 'agent', 'management', 'kas']); // Peran dalam sistem
+            $table->enum('role', ['vendor', 'agent', 'management']); // Peran dalam sistem
             $table->boolean('is_management')->default(false); // Menandai apakah ini bagian dari manajemen
             $table->decimal('balance', 15, 2)->default(0); // Saldo
             $table->timestamps();

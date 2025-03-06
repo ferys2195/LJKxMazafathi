@@ -10,8 +10,6 @@ use App\Http\Controllers\TransactionSummaryController;
 use App\Http\Controllers\Voucher\VoucherAgenController;
 use App\Http\Controllers\VoucherTransactionController;
 use App\Http\Controllers\VoucherTypeController;
-use App\Http\Controllers\WalletController;
-use App\Http\Controllers\WalletTransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +31,3 @@ Route::resource('accounts', AccountController::class);
 Route::resource('account-balances', AccountBalanceController::class);
 Route::resource('voucher-transaction', VoucherTransactionController::class);
 Route::get('voucher-agents', VoucherAgenController::class);
-
-Route::resource('wallets', WalletController::class);
-Route::resource('wallet-transactions', WalletTransactionController::class);
