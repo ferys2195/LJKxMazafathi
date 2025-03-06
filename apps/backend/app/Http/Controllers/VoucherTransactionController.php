@@ -106,7 +106,7 @@ class VoucherTransactionController extends Controller
                 Transaction::create([
                     'account_id' => $vendorAccount->id,
                     'amount' => $totalAmount,
-                    'transaction_category_id' => 1,
+                    'transaction_category_id' => 2,
                     'transaction_type' => 'In',
                     'description' => 'Pendapatan dari penjualan voucher',
                     'transaction_date' => $transaction->date_transaction,
@@ -122,7 +122,7 @@ class VoucherTransactionController extends Controller
                     Transaction::create([
                         'account_id' => $share->account_id,
                         'amount' => $managementShareAmount,
-                        'transaction_category_id' => 1,
+                        'transaction_category_id' => 4,
                         'transaction_type' => 'In',
                         'description' => "Fee manajemen ({$share->percentage}%) dari penjualan voucher",
                         'transaction_date' => $transaction->date_transaction,
@@ -135,7 +135,7 @@ class VoucherTransactionController extends Controller
 
                 Transaction::create([
                     'account_id' => $agentAccount->id,
-                    'transaction_category_id' => 1,
+                    'transaction_category_id' => 3,
                     'description' => 'Komisi agen dari penjualan voucher',
                     'transaction_type' => 'In',
                     'amount' => $agentAmount,

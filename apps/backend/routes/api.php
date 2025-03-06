@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountBalanceController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AgentSalesController;
 use App\Http\Controllers\RecapSalesController;
@@ -29,6 +30,7 @@ Route::get('/transactions/summary', TransactionSummaryController::class);
 Route::resource('transactions', TransactionController::class);
 Route::get('transaction-categories', TransactionCategoryController::class);
 Route::resource('accounts', AccountController::class);
+Route::resource('account-balances', AccountBalanceController::class);
 Route::resource('voucher-transaction', VoucherTransactionController::class);
 Route::get('voucher-agents', VoucherAgenController::class);
 
