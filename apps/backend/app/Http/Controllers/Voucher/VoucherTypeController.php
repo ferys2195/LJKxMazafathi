@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Voucher;
 
 use App\Helpers\ApiResponse;
+use App\Http\Controllers\Controller;
 use App\Models\VoucherType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
@@ -13,7 +14,7 @@ class VoucherTypeController extends Controller
     public function index()
     {
         $vouchers = VoucherType::whereIsActive(true)->get();
-        return new JsonResponse($vouchers);
+        return ApiResponse::success($vouchers);
     }
     public function getBalanceByVoucherType($accountId = null)
     {

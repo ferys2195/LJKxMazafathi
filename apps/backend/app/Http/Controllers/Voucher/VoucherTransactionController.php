@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Voucher;
 
+use App\Enums\TransactionType;
 use App\Helpers\ApiResponse;
+use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\ManagementShare;
 use App\Models\Transaction;
@@ -94,7 +96,7 @@ class VoucherTransactionController extends Controller
             ]);
 
             // Jika jenis transaksi adalah 'Sold', proses pembagian hasil
-            if ($request->transaction_type === 'sold') {
+            if ($request->transaction_type === TransactionType::SOLD) {
                 $totalAmount = $request->quantity * $voucherType->base_price;
                 $managementAmount = $request->quantity * $voucherType->management_fee;
                 $agentAmount = $request->quantity * $voucherType->agent_commission;

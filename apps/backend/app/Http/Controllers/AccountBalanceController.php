@@ -20,14 +20,6 @@ class AccountBalanceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -43,14 +35,6 @@ class AccountBalanceController extends Controller
         $account = Account::find($id);
         $account->load('transactions.transactionCategory');
         return ApiResponse::success($account);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**

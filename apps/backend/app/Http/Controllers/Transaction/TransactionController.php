@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Transaction;
 
 use App\Helpers\ApiResponse;
+use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -13,8 +14,6 @@ class TransactionController extends Controller
 {
     public function index(Request $request)
     {
-        // $transactions = Transaction::with('account', 'transactionCategory')->orderBy('transaction_date', 'desc')->orderBy('id', 'desc')->paginate(10);
-        // return ApiResponse::success($transactions);
         try {
             $request->validate([
                 'date_from' => 'required_with:date_to|date',
