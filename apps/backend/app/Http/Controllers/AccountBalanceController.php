@@ -38,9 +38,10 @@ class AccountBalanceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Account $account)
+    public function show(string $id)
     {
-        // $account->load('transactions');
+        $account = Account::find($id);
+        $account->load('transactions.transactionCategory');
         return ApiResponse::success($account);
     }
 

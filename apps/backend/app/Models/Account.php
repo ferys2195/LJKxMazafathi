@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     //
-    protected $fillable = [""];
+    protected $fillable = ["name", "role", "is_management", "balance"];
 
     public function voucherTransaction()
     {
