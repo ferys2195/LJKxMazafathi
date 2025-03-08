@@ -14,6 +14,7 @@ class VoucherTypeSeeder extends Seeder
     public function run(): void
     {
         // 🟢 Data Harga Lama
+        /*
         VoucherType::create([
             'name' => '2 Jam',
             'base_price' => 5000,
@@ -27,7 +28,7 @@ class VoucherTypeSeeder extends Seeder
             'base_price' => 4000,
             'management_fee' => 1000,
             'agent_commission' => 1000,
-            'is_active' => false,
+            'is_active' => true,
         ]);
 
         VoucherType::create([
@@ -61,9 +62,10 @@ class VoucherTypeSeeder extends Seeder
             'agent_commission' => 2250,
             'is_active' => true,
         ]);
+        */
 
         // 🟡 Data Harga Baru (Komentar, Aktifkan Nanti)
-        /*
+
         VoucherType::create([
             'name' => '3 Jam',
             'base_price' => 4000,
@@ -103,6 +105,5 @@ class VoucherTypeSeeder extends Seeder
             'agent_commission' => 6000,
             'is_active' => true,
         ]);
-        */
     }
 }

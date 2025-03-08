@@ -35,8 +35,9 @@ class AccountBalanceController extends Controller
         $account = Account::find($id);
         $transactions = $account->transactions()
             ->with('transactionCategory')
+            ->orderBy('transaction_date', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate(10);
-        // $account->load('transactions.transactionCategory');
         return ApiResponse::successWithInfo(compact('account'), $transactions);
     }
 

@@ -19,6 +19,7 @@ class TransactionController extends Controller
                 'date_from' => 'required_with:date_to|date',
                 'date_to' => 'required_with:date_from|date',
                 'category' => 'nullable|exists:transaction_categories,id',
+                'account_id' => 'nullable|exists:accounts,id',
             ]);
 
             $transactions = Transaction::query()
@@ -27,6 +28,9 @@ class TransactionController extends Controller
                 })
                 ->when($request->filled('category'), function ($q) use ($request) {
                     $q->where('transaction_category_id', $request->category);
+                })
+                ->when($request->filled('account_id'), function ($q) use ($request) {
+                    $q->where('account_id', $request->account_id);
                 })
                 ->with('account', 'transactionCategory')->orderBy('transaction_date', 'desc')->orderBy('id', 'desc')->paginate(10);
 

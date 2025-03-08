@@ -1,3 +1,4 @@
+import { SummarySection } from "@/components/transaction/SummarySection";
 import Modal from "@/components/ui/Modal";
 import WalletTransactionTable from "@/components/wallet/WalletTransactionTable";
 import WithdrawForm from "@/components/wallet/WithdrawForm";
@@ -33,7 +34,7 @@ function IncomeDetailPage() {
     return "loading";
   }
   return (
-    <div className="w-1/2">
+    <div className="w-3/4">
       <div className="p-4 bg-white flex justify-between items-center shadow-sm rounded-lg">
         <Link to={"/income-report"} className="flex gap-3 items-center">
           <MdArrowBack />
@@ -56,7 +57,8 @@ function IncomeDetailPage() {
           </button>
         </div>
       </div>
-      <div className="bg-white mt-10">
+      <div className="bg-white mt-10 p-5">
+        <SummarySection filters={{ account_id: account.id }} />
         <WalletTransactionTable transactions={accountTrx} />
       </div>
       <Modal id={"modal-withdraw"} title={"Withdraw"} onClose={refreshKey}>
