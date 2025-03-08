@@ -4,6 +4,7 @@ import { FaFilter } from "react-icons/fa6";
 
 export function FilterSection({ filters, setFilters, onApply }) {
   const [categories, setCategories] = useState([]);
+  const [accounts, setAccounts] = useState([]);
 
   // Ambil kategori dari API
   const fetchCategories = async () => {
@@ -14,9 +15,17 @@ export function FilterSection({ filters, setFilters, onApply }) {
       console.error("Error fetching categories:", error);
     }
   };
-
+  const fetchAccounts = async () => {
+    try {
+      const { data } = await fetching("accounts");
+      setAccounts(data);
+    } catch (error) {
+      console.error("Error fetching accounts:", error);
+    }
+  };
   useEffect(() => {
     fetchCategories();
+    fetchAccounts();
   }, []);
 
   const handleChange = (e) => {
@@ -25,7 +34,7 @@ export function FilterSection({ filters, setFilters, onApply }) {
   };
 
   return (
-    <div className="hidden mb-4  gap-2">
+    <div className="mb-4 hidden gap-2">
       <input
         type="date"
         className="input input-bordered"
@@ -50,6 +59,19 @@ export function FilterSection({ filters, setFilters, onApply }) {
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
             {category.name}
+          </option>
+        ))}
+      </select>
+      <select
+        className="select select-bordered "
+        name="account_id"
+        value={filters.account_id}
+        onChange={handleChange}
+      >
+        <option value="">Semua Account</option>
+        {accounts.map((account) => (
+          <option key={account.id} value={account.id}>
+            {account.name}
           </option>
         ))}
       </select>

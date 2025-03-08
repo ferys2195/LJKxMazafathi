@@ -8,7 +8,7 @@ function TransactionForm({ onTransactionAdded }) {
     transaction_category_id: "",
     amount: "",
     description: "",
-    transaction_type: "Out",
+    transaction_type: "in",
     transaction_date: "",
   });
 
@@ -150,8 +150,8 @@ function TransactionForm({ onTransactionAdded }) {
             <input
               type="radio"
               name="transaction_type"
-              value="Out"
-              checked={formData.transaction_type === "Out"}
+              value="out"
+              checked={formData.transaction_type === "out"}
               onChange={handleChange}
               className="radio checked:bg-red-500"
             />
@@ -161,8 +161,8 @@ function TransactionForm({ onTransactionAdded }) {
             <input
               type="radio"
               name="transaction_type"
-              value="In"
-              checked={formData.transaction_type === "In"}
+              value="in"
+              checked={formData.transaction_type === "in"}
               onChange={handleChange}
               className="radio checked:bg-green-500"
             />

@@ -18,6 +18,7 @@ class TransactionSummaryController extends Controller
             'date_from' => 'required_with:date_to|date',
             'date_to' => 'required_with:date_from|date',
             'category' => 'nullable|exists:transaction_categories,id',
+            'account_id' => 'nullable|exists:accounts,id',
         ]);
 
         $summary = $this->getSummary($request);
@@ -36,6 +37,9 @@ class TransactionSummaryController extends Controller
             })
             ->when($request->filled('category'), function ($q) use ($request) {
                 $q->where('transaction_category_id', $request->category);
+            })
+            ->when($request->filled('account_id'), function ($q) use ($request) {
+                $q->where('account_id', $request->account_id);
             })
             ->selectRaw("
             SUM(CASE WHEN transaction_type = 'In' THEN amount ELSE 0 END) as totalIn,

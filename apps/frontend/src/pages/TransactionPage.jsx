@@ -15,6 +15,7 @@ function TransactionPage() {
     date_from: searchParams.get("date_from") || "",
     date_to: searchParams.get("date_to") || "",
     category: searchParams.get("category") || "",
+    account_id: searchParams.get("account_id") || "",
   });
 
   // State untuk menyimpan filter yang diterapkan

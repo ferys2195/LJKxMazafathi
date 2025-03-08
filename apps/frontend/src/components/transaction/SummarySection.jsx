@@ -29,6 +29,7 @@ export function SummarySection({ filters }) {
   useEffect(() => {
     fetchSummary();
   }, [filters]);
+  console.log(summary);
   return (
     <div className="mb-4 p-2 bg-base-300 rounded-lg flex justify-around ">
       <div className="text-start">
