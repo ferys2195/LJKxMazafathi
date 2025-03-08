@@ -13,7 +13,7 @@ class TransactionCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ['Penjualan', 'Pembayaran Vendor', 'Komisi Agen', 'Gaji Karyawan', 'Biaya Operasional', 'Tarik Tunai'];
+        $categories = ['Penjualan', 'Pembayaran Vendor', 'Komisi Agen', 'Gaji Karyawan', 'Biaya Operasional', 'Tarik Tunai', 'Modal'];
         foreach ($categories as $category) {
             TransactionCategory::create(['name' => $category]);
         }
