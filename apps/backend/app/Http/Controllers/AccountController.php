@@ -12,7 +12,7 @@ class AccountController extends Controller
     {
         if ($request->query('role') === "agent") {
             $agentAccount = Account::whereRole($request->query('role'))->get();
-            return response()->json($agentAccount);
+            return ApiResponse::success($agentAccount);
         }
         $accounts = Account::all();
         return ApiResponse::success($accounts);

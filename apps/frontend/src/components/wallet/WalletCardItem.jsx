@@ -12,7 +12,7 @@ const WalletCardItem = ({ wallet }) => {
           {wallet.balance > 0 ? currency.format(wallet.balance) : "-"}
         </div>
         <div className="stat-actions">
-          <Link to={`/income-report/${wallet.id}`} className="btn btn-xs">
+          <Link to={`/income-report/${wallet.id}`} className="btn btn-sm">
             <RxExternalLink /> View Detail
           </Link>
         </div>

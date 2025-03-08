@@ -24,16 +24,17 @@ export function TransactionTable({ transactions }) {
                 <td>{transaction.description}</td>
                 <td>{transaction.transaction_category.name}</td>
                 <td
-                  className={
-                    transaction.transaction_type === "In"
-                      ? "text-green-500"
-                      : "text-red-500"
-                  }
+                  className={`capitalize 
+                    ${
+                      transaction.transaction_type === "in"
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }`}
                 >
                   {transaction.transaction_type}
                 </td>
                 <td>
-                  {transaction.transaction_type === "In" ? "+ " : "- "}
+                  {transaction.transaction_type === "in" ? "+ " : "- "}
                   {currency.format(transaction.amount)}
                 </td>
               </tr>

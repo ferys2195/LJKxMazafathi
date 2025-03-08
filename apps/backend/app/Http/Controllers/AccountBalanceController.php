@@ -33,8 +33,11 @@ class AccountBalanceController extends Controller
     public function show(string $id)
     {
         $account = Account::find($id);
-        $account->load('transactions.transactionCategory');
-        return ApiResponse::success($account);
+        $transactions = $account->transactions()
+            ->with('transactionCategory')
+            ->paginate(10);
+        // $account->load('transactions.transactionCategory');
+        return ApiResponse::successWithInfo(compact('account'), $transactions);
     }
 
     /**

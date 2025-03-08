@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function Modal({ id, title, children }) {
+function Modal({ id, title, children, onClose }) {
+  const closeModal = () => {
+    document.getElementById(id)?.close(); // Menutup modal
+  };
+  useEffect(() => {
+    if (onClose) closeModal();
+  }, [onClose, id]);
   return (
     <dialog id={id} className="modal">
       <div className="modal-box">
         <form method="dialog">
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+          <button
+            onClick={closeModal}
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          >
             ✕
           </button>
         </form>

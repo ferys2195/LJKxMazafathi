@@ -8,7 +8,7 @@ function VoucherHistoryTable({ vouchers }) {
         <tr>
           <th>Tanggal</th>
           <th>Kepada</th>
-          <th>Jenis Transaksi</th>
+          <th className="text-center">Jenis Transaksi</th>
           <th>Jenis Voucher</th>
           <th>Jumlah</th>
         </tr>
@@ -19,9 +19,9 @@ function VoucherHistoryTable({ vouchers }) {
             <tr key={i}>
               <td>{formatDate(voucher.date_transaction)}</td>
               <td>{voucher.account.name}</td>
-              <td>
+              <td className="text-center">
                 <span
-                  className={`badge w-1/3 ${
+                  className={`badge ${
                     voucher.transaction_type === "in"
                       ? "badge-success"
                       : voucher.transaction_type === "out"

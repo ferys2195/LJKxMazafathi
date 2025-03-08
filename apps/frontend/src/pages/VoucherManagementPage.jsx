@@ -40,7 +40,7 @@ function VoucherManagamentPage() {
             </h2>
             <div className="bg-white rounded-lg border">
               <DataFetcherWrapper
-                endpoint="voucher-transaction"
+                endpoint="voucher-transactions"
                 refresh={handleRefresh}
               >
                 {({ data: vouchers }) => (

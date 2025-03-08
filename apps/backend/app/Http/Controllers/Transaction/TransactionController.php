@@ -42,7 +42,7 @@ class TransactionController extends Controller
                 'account_id' => 'required|exists:accounts,id',
                 'transaction_category_id' => 'required|exists:transaction_categories,id',
                 'description' => 'required|string|max:255',
-                'transaction_type' => 'required|in:In,Out',
+                'transaction_type' => 'required|in:in,out',
                 'amount' => 'required|integer|min:1', // Tidak boleh 0
                 'transaction_date' => 'required|date', // Validasi format tanggal
             ]);

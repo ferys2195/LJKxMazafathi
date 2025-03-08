@@ -7,6 +7,7 @@ use App\Http\Controllers\RecapSalesController;
 use App\Http\Controllers\Transaction\TransactionCategoryController;
 use App\Http\Controllers\Transaction\TransactionController;
 use App\Http\Controllers\Transaction\TransactionSummaryController;
+use App\Http\Controllers\Transaction\WithdrawController;
 use App\Http\Controllers\Voucher\VoucherAgenController;
 use App\Http\Controllers\Voucher\VoucherTransactionController;
 use App\Http\Controllers\Voucher\VoucherTypeController;
@@ -35,11 +36,12 @@ Route::apiResource('vouchers', VoucherTypeController::class);
 Route::prefix('transactions')->group(function () {
     Route::get('pivot', [TransactionController::class, 'pivot']);
     Route::get('summary', TransactionSummaryController::class);
+    Route::post('withdraw', WithdrawController::class);
     Route::apiResource('/', TransactionController::class);
 });
 
 // ✅ Transaction Categories (Read-Only API: hanya index() yang dibutuhkan)
-Route::get('transaction-categories', [TransactionCategoryController::class, 'index']);
+Route::get('transaction-categories', TransactionCategoryController::class);
 
 // ✅ Accounts Management
 Route::apiResource('accounts', AccountController::class)->only('index', 'show');

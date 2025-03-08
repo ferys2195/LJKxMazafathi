@@ -9,7 +9,7 @@ function IncomeReportPage() {
 
   const fetchWallets = async () => {
     try {
-      const { data } = await fetching("wallets");
+      const { data } = await fetching("account-balances");
       setWallets(data);
     } catch (error) {
       console.error("Error fetching wallets:", error);

@@ -20,13 +20,15 @@ function WalletTransactionTable({ transactions }) {
             <td>{transaction.description}</td>
             <td
               className={
-                transaction.type === "in" ? "text-green-500" : "text-red-500"
+                transaction.transaction_type === "in"
+                  ? "text-green-500"
+                  : "text-red-500"
               }
             >
-              {transaction.type}
+              {transaction.transaction_type}
             </td>
             <td>
-              {transaction.type === "in" ? "+ " : "- "}
+              {transaction.transaction_type === "in" ? "+ " : "- "}
               {currency.format(transaction.amount)}
             </td>
           </tr>
