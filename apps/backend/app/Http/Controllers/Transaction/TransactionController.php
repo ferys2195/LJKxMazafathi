@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Transaction;
 
+use App\Enums\TransactionType;
 use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\Transaction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -50,8 +52,20 @@ class TransactionController extends Controller
                 'amount' => 'required|integer|min:1', // Tidak boleh 0
                 'transaction_date' => 'required|date', // Validasi format tanggal
             ]);
+            $transaction = DB::transaction(function () use ($validated) {
+                if ($validated['transaction_type'] === TransactionType::OUT->value) {
+                    // Kurangi saldo akun
+                    // dd(($validated['transaction_type'] === TransactionType::OUT->value));
+                    $balance = Account::findOrFail($validated['account_id']);
+                    $balance->decrement('balance', $validated['amount']);
+                }
+                // Simpan transaksi
+                $transaction = Transaction::create($validated);
 
-            $transaction = Transaction::create($validated);
+
+
+                return $transaction; // Mengembalikan objek transaksi
+            });
 
             return ApiResponse::success($transaction, "Transaction Create Successfully", 201);
         } catch (ValidationException $e) {
